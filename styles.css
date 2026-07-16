@@ -582,3 +582,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--navy-800); font-
 .page-loader.hidden { opacity: 0; visibility: hidden; }
 .loader-mark { width: 46px; height: 46px; animation: spin 1.1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+fix: reveal animation fallback
+
+
