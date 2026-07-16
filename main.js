@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
+  const toTopBtn = document.getElementById('toTopBtn'); // declared BEFORE onScroll uses it
 
   const onScroll = () => {
     navbar.classList.toggle('scrolled', window.scrollY > 12);
@@ -43,6 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
+  // Only NOW enable the hide-then-reveal CSS states (see styles.css) — this
+  // line only runs if everything above succeeded, so if this script ever
+  // fails to load or throws earlier, content stays visible by default
+  // instead of getting stuck at opacity: 0.
+  document.documentElement.classList.add('js-ready');
+
   /* ---------- Animated counters ---------- */
   const counters = document.querySelectorAll('.stat-num');
   const counterIO = new IntersectionObserver((entries) => {
@@ -50,18 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseInt(el.dataset.count, 10);
+      const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
       const duration = 1400;
       const start = performance.now();
-      const goldSpan = el.querySelector('.gold');
       function tick(now) {
         const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         const val = Math.floor(eased * target);
-        el.textContent = val + suffix;
-        if (goldSpan) { /* preserved via textContent overwrite intentionally omitted */ }
+        el.textContent = prefix + val + suffix;
         if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = target + suffix;
+        else el.textContent = prefix + target + suffix;
       }
       requestAnimationFrame(tick);
       counterIO.unobserve(el);
@@ -215,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Back to top ---------- */
-  const toTopBtn = document.getElementById('toTopBtn');
   toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 });
