@@ -585,8 +585,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--navy-800); font-
 
 <link rel="stylesheet" href="main.js">
 
-fix: reveal animation fallback
-fix: reveal animation fallback
+<div class="modal-overlay" id="serviceModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <h2 id="modalTitle">Critical Issues (Must Fix)</h2>
+  ...
+</div>
+
 fix: reveal animation fallback
 
 
