@@ -223,6 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Back to top ---------- */
   toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+  <link rel="stylesheet" href="styles.css">
+  
 fix: reveal animation fallback
+fix: reveal animation fallback
+fix: reveal animation fallback
+
   
 });
