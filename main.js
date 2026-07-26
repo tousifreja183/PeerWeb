@@ -225,11 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <link rel="stylesheet" href="styles.css">
 
-  <div class="modal-overlay" id="serviceModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <h2 id="modalTitle">Critical Issues (Must Fix)</h2>
-  ...
-</div>
-  
 fix: reveal animation fallback
 
   
